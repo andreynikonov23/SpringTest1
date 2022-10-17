@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Add Client</title>
+		<style>
+			body{
+                    padding: 0;
+                }
+                *{
+                    box-sizing: border-box;
+                }
+				.conteiner{
+                	width: 20%;
+                	margin: 0 auto;
+                }
+				#submit{
+					display: block;
+				}
+		</style>
+	</head>
+	<body>
+		<h1>Добавить нового клиента</h1>
+		<hr/>
+		<div class="conteiner">
+			<form method="post" action="/TestSpringMini/create" th:object="${client}">
+				<table>
+					<tr>
+						<td>
+							<div>
+								<label for="name">Имя</label><input id="name" type="text" th:field="*{name}">
+								<div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div>
+								<label for="email">Email</label><input id="phone" type="text" th:field="*{email}">
+								<div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+							</div>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<div>
+								<label for="country">Страна</label>
+								<select id="country" th:field="*{country}">
+									<option th:each="index : ${countries}" th:value="${index.getId()}" th:text="${index.getCountryName}"></option>
+								</select>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="submit" value="Добавить" id="submit">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

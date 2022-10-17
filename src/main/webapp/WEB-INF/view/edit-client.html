@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Клиент</title>
+		<style>
+			body{
+                    padding: 0;
+                }
+                *{
+                    box-sizing: border-box;
+                }
+				.conteiner{
+                	width: 20%;
+                	margin: 0 auto;
+                }
+				#submit{
+					display: block;
+				}
+		</style>
+	</head>
+	<body>
+		<h1>Изменить клиента</h1>
+		<hr/>
+		
+		
+		<form th:method="POST" th:action="@{/{id}/update(id=${client.getId()})}" th:object="${client}">
+			<label for="name">Имя</label>
+			<input type="text" th:field="*{name}" id="name">
+			<label for="email">Email</label>
+			<input type="text" th:field="*{email}" id="name">
+			<label for="country"></label>
+			<select id="country" th:field="*{country}">
+				<option th:each="index : ${countries}" th:value="${index.getId()}" th:text="${index.getCountryName()}"></option>
+			</select>
+			<input type="submit" value="Изменить!">
+		</form>
+		<form th:method="POST" th:action="@{/{id}/delete(id=${client.getId()})}">
+			<input type="submit" value="Удалить">
+		</form>
+	</body>
+</html>
